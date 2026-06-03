@@ -239,88 +239,148 @@
         <article role="main" id="furo-main-content">
           <h1>Source code for 02_qc</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Quality Control and Filtering for HIV-1 Sequences.</span>
+<span class="sd">Control de Calidad (QC) y Filtrado de Secuencias de VIH-1.</span>
 
-<span class="sd">This module performs biological quality control on raw FASTA sequences,</span>
-<span class="sd">filtering out entries that do not meet length requirements or contain</span>
-<span class="sd">excessive ambiguous bases (Ns).</span>
+<span class="sd">Este script es una versión refactorizada del pipeline original, diseñada con un</span>
+<span class="sd">enfoque educativo para científicos que están aprendiendo ingeniería de software.</span>
 
-<span class="sd">Biological Context:</span>
-<span class="sd">    In HIV-1 evolutionary studies, sequences with high ambiguity or short</span>
-<span class="sd">    lengths can introduce noise in phylogenetic reconstruction. Standard</span>
-<span class="sd">    practice involves filtering sequences that cover less than 80% of the</span>
-<span class="sd">    target region or have &gt;5% ambiguous sites.</span>
+<span class="sd">HERRAMIENTAS UTILIZADAS:</span>
 
-<span class="sd">Pipeline Stage:</span>
-<span class="sd">    Phase 2 of 7: Quality Control.</span>
-
-<span class="sd">Example:</span>
-<span class="sd">    &gt;&gt;&gt; # Run from terminal:</span>
-<span class="sd">    &gt;&gt;&gt; # python scripts/02_qc.py</span>
+<span class="sd">1. pathlib: Sustituye el manejo de rutas basado en strings por objetos Path.</span>
+<span class="sd">   Esto hace que el código funcione igual en Windows, Linux y Mac sin cambios.</span>
+<span class="sd">2. logging: Reemplaza los &#39;print()&#39; por un sistema profesional de registro.</span>
+<span class="sd">   Permite guardar logs en archivos y ver diferentes niveles de importancia (INFO, ERROR).</span>
+<span class="sd">3. argparse: Elimina variables fijas (hardcoded). El científico puede ejecutar</span>
+<span class="sd">   el script con diferentes parámetros desde la terminal.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Bio</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeqIO</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">Bio.SeqUtils</span><span class="w"> </span><span class="kn">import</span> <span class="n">gc_fraction</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">&quot;logs/qc.log&quot;</span><span class="p">),</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-    <span class="p">]</span>
-<span class="p">)</span>
+<div class="viewcode-block" id="setup_logging">
+<a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.setup_logging">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span><span class="n">log_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configura el sistema de logs para que informe por terminal y guarde en archivo.</span>
+
+<span class="sd">    ¿POR QUÉ LOGGING?: A diferencia de print(), logging permite clasificar mensajes</span>
+<span class="sd">    por importancia (INFO para flujo normal, ERROR para fallos) y dirigirlos a</span>
+<span class="sd">    múltiples destinos (pantalla y archivo) simultáneamente.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Creamos el directorio de logs si no existe usando pathlib</span>
+    <span class="c1"># El método mkdir con parents=True crea toda la jerarquía necesaria.</span>
+    <span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">log_file</span> <span class="o">=</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s2">&quot;qc.log&quot;</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">handlers</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">log_file</span><span class="p">),</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="load_config">
 <a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.load_config">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Load pipeline configuration from a YAML file.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Dict[str, Any]: Configuration dictionary.</span>
+<span class="sd">    Carga la configuración centralizada del proyecto desde un archivo YAML.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">config_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;No se encontró el archivo config.yaml&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="parse_args">
+<a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.parse_args">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_args</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define y procesa los argumentos de entrada desde la terminal.</span>
+
+<span class="sd">    ¿POR QUÉ ARGPARSE?: Permite que otros científicos usen tu código con sus propios</span>
+<span class="sd">    datos sin tener que editar el script de Python. Proporciona ayuda automática</span>
+<span class="sd">    cuando se ejecuta con --help.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Control de Calidad de secuencias VIH-1&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extraemos rutas por defecto de la configuración</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="c1"># ¿POR QUÉ PATHLIB?: Al usar Path como tipo, argparse convierte automáticamente</span>
+    <span class="c1"># la cadena de texto de la terminal en un objeto Path listo para usar.</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--input&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;raw_data&quot;</span><span class="p">,</span> <span class="s2">&quot;data/raw&quot;</span><span class="p">))</span> <span class="o">/</span> <span class="s2">&quot;hiv_raw.fasta&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Archivo FASTA de entrada&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--output-dir&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;processed_data&quot;</span><span class="p">,</span> <span class="s2">&quot;data/processed&quot;</span><span class="p">)),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Directorio para resultados procesados&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--figures-dir&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="n">paths</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;figures&quot;</span><span class="p">,</span> <span class="s2">&quot;figures&quot;</span><span class="p">)),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Directorio para gráficos&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--min-len&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;min_length&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Longitud mínima permitida en pares de bases (bp)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--max-ns&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_ns_percent&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Máximo porcentaje de Ns permitido&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="run_qc">
 <a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.run_qc">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">run_qc</span><span class="p">(</span>
-    <span class="n">input_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">input_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">min_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">max_ns</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">processed_path</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Execute biological quality control filtering on a FASTA file.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        input_file (str): Path to the input raw FASTA file.</span>
-<span class="sd">        min_len (int): Minimum sequence length required (in bp).</span>
-<span class="sd">        max_ns (float): Maximum allowed percentage of ambiguous bases (Ns).</span>
-<span class="sd">        processed_path (str): Directory where filtered output and stats will be saved.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        pd.DataFrame: Summary statistics of all analyzed sequences.</span>
-
-<span class="sd">    Notes:</span>
-<span class="sd">        The function saves `hiv_filtered.fasta` and `qc_stats.csv` to the</span>
-<span class="sd">        `processed_path` directory.</span>
+<span class="sd">    Ejecuta el filtrado biológico basado en longitud y ambigüedad.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Starting Quality Control on </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iniciando Control de Calidad en: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ¿POR QUÉ PATHLIB?: Reemplaza os.makedirs con un método más legible.</span>
+    <span class="n">output_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="n">stats</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">filtered_sequences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">processed_count</span> <span class="o">=</span> <span class="mi">0</span>
     
+    <span class="c1"># Verificamos si el archivo de entrada existe usando pathlib</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El archivo de entrada no existe: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No se encontró </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">):</span>
         <span class="n">seq_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
         <span class="n">n_count</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">seq</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;N&#39;</span><span class="p">)</span>
@@ -334,71 +394,84 @@
             <span class="s1">&#39;gc_content&#39;</span><span class="p">:</span> <span class="n">gc</span>
         <span class="p">})</span>
         
-        <span class="c1"># Rigorous biological filtering</span>
         <span class="k">if</span> <span class="n">seq_len</span> <span class="o">&gt;=</span> <span class="n">min_len</span> <span class="ow">and</span> <span class="n">ns_percent</span> <span class="o">&lt;=</span> <span class="n">max_ns</span><span class="p">:</span>
             <span class="n">filtered_sequences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="n">processed_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># Registro de progreso cada 100 secuencias para dar feedback al usuario.</span>
+        <span class="k">if</span> <span class="n">processed_count</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Progreso: </span><span class="si">{</span><span class="n">processed_count</span><span class="si">}</span><span class="s2"> secuencias analizadas...&quot;</span><span class="p">)</span>
             
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
     
-    <span class="c1"># Save statistics</span>
-    <span class="n">stats_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">processed_path</span><span class="p">,</span> <span class="s2">&quot;qc_stats.csv&quot;</span><span class="p">)</span>
+    <span class="c1"># ¿POR QUÉ PATHLIB?: El operador &#39;/&#39; permite unir rutas de forma intuitiva</span>
+    <span class="c1"># independientemente de si estás en Windows (\) o Linux/Mac (/).</span>
+    <span class="n">stats_file</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;qc_stats.csv&quot;</span>
     <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">stats_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     
-    <span class="c1"># Save filtered sequences</span>
-    <span class="n">output_fasta</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">processed_path</span><span class="p">,</span> <span class="s2">&quot;hiv_filtered.fasta&quot;</span><span class="p">)</span>
+    <span class="n">output_fasta</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;hiv_filtered.fasta&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_fasta</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">filtered_sequences</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">)</span>
         
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QC Complete. </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_sequences</span><span class="p">)</span><span class="si">}</span><span class="s2"> sequences passed filters.&quot;</span><span class="p">)</span>
-    
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QC Finalizado. </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_sequences</span><span class="p">)</span><span class="si">}</span><span class="s2"> secuencias pasaron los filtros.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
 
 
 <div class="viewcode-block" id="generate_plots">
 <a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.generate_plots">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">generate_plots</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_plots</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate distribution plots for sequence metrics.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        df (pd.DataFrame): DataFrame containing &#39;length&#39; and &#39;gc_content&#39; columns.</span>
-<span class="sd">        output_path (str): Directory where the PNG plot will be saved.</span>
+<span class="sd">    Genera visualizaciones de las métricas de calidad (Longitud y GC).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">output_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Sequence Lengths&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Longitudes&#39;</span><span class="p">)</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gc_content&#39;</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;GC Content Distribution&#39;</span><span class="p">)</span>
     
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;qc_metrics.png&quot;</span><span class="p">))</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QC plots saved to </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+    <span class="n">plot_file</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;qc_metrics.png&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">plot_file</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gráficos guardados en: </span><span class="si">{</span><span class="n">plot_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../autoapi/02_qc/index.html#02_qc.main">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Entry point for the QC script.</span>
+<span class="sd">    Orquestación principal del script.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
-    <span class="n">raw_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;paths&quot;</span><span class="p">][</span><span class="s2">&quot;raw_data&quot;</span><span class="p">],</span> <span class="s2">&quot;hiv_raw.fasta&quot;</span><span class="p">)</span>
-    <span class="n">processed_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;paths&quot;</span><span class="p">][</span><span class="s2">&quot;processed_data&quot;</span><span class="p">]</span>
-    <span class="n">figures_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;paths&quot;</span><span class="p">][</span><span class="s2">&quot;figures&quot;</span><span class="p">]</span>
-    
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">processed_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">figures_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">raw_file</span><span class="p">):</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input file </span><span class="si">{</span><span class="n">raw_file</span><span class="si">}</span><span class="s2"> not found. Run download script first.&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># 1. Cargamos configuración</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">run_qc</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;min_length&quot;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;max_ns_percent&quot;</span><span class="p">],</span> <span class="n">processed_path</span><span class="p">)</span>
-    <span class="n">generate_plots</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">figures_path</span><span class="p">)</span></div>
+        <span class="c1"># 2. Procesamos argumentos</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="c1"># 3. Configuramos logs (usando la ruta de la config o &#39;logs&#39; por defecto)</span>
+        <span class="n">log_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;paths&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;logs&quot;</span><span class="p">,</span> <span class="s2">&quot;logs&quot;</span><span class="p">))</span>
+        <span class="n">setup_logging</span><span class="p">(</span><span class="n">log_dir</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;=== Iniciando Pipeline de Control de Calidad ===&quot;</span><span class="p">)</span>
+
+        <span class="c1"># 4. Ejecución del Control de Calidad</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">run_qc</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">min_len</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">max_ns</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output_dir</span><span class="p">)</span>
+
+        <span class="c1"># 5. Generación de gráficos</span>
+        <span class="n">generate_plots</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">figures_dir</span><span class="p">)</span>
+
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;=== Proceso completado exitosamente ===&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="c1"># En caso de error, el nivel ERROR asegura que destaque en los logs.</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fallo crítico en el script: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

@@ -246,26 +246,18 @@
         <article role="main" id="furo-main-content">
           <section id="module-02_qc">
 <span id="qc"></span><h1>02_qc<a class="headerlink" href="#module-02_qc" title="Link to this heading">¶</a></h1>
-<p>Quality Control and Filtering for HIV-1 Sequences.</p>
-<p>This module performs biological quality control on raw FASTA sequences,
-filtering out entries that do not meet length requirements or contain
-excessive ambiguous bases (Ns).</p>
-<dl class="simple">
-<dt>Biological Context:</dt><dd><p>In HIV-1 evolutionary studies, sequences with high ambiguity or short
-lengths can introduce noise in phylogenetic reconstruction. Standard
-practice involves filtering sequences that cover less than 80% of the
-target region or have &gt;5% ambiguous sites.</p>
-</dd>
-<dt>Pipeline Stage:</dt><dd><p>Phase 2 of 7: Quality Control.</p>
-</dd>
-</dl>
-<div class="admonition-example admonition">
-<p class="admonition-title">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Run from terminal:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># python scripts/02_qc.py</span>
-</pre></div>
-</div>
-</div>
+<p>Control de Calidad (QC) y Filtrado de Secuencias de VIH-1.</p>
+<p>Este script es una versión refactorizada del pipeline original, diseñada con un
+enfoque educativo para científicos que están aprendiendo ingeniería de software.</p>
+<p>HERRAMIENTAS UTILIZADAS:</p>
+<ol class="arabic simple">
+<li><p>pathlib: Sustituye el manejo de rutas basado en strings por objetos Path.
+Esto hace que el código funcione igual en Windows, Linux y Mac sin cambios.</p></li>
+<li><p>logging: Reemplaza los ‘print()’ por un sistema profesional de registro.
+Permite guardar logs en archivos y ver diferentes niveles de importancia (INFO, ERROR).</p></li>
+<li><p>argparse: Elimina variables fijas (hardcoded). El científico puede ejecutar
+el script con diferentes parámetros desde la terminal.</p></li>
+</ol>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -278,64 +270,45 @@ target region or have &gt;5% ambiguous sites.</p>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading">¶</a></h2>
 <dl class="py function">
+<dt class="sig sig-object py" id="qc.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#setup_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.setup_logging" title="Link to this definition">¶</a></dt>
+<dd><p>Configura el sistema de logs para que informe por terminal y guarde en archivo.</p>
+<p>¿POR QUÉ LOGGING?: A diferencia de print(), logging permite clasificar mensajes
+por importancia (INFO para flujo normal, ERROR para fallos) y dirigirlos a
+múltiples destinos (pantalla y archivo) simultáneamente.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="qc.load_config">
 <span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/02_qc.html#load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.load_config" title="Link to this definition">¶</a></dt>
-<dd><p>Load pipeline configuration from a YAML file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Configuration dictionary.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, Any]</p>
-</dd>
-</dl>
+<dd><p>Carga la configuración centralizada del proyecto desde un archivo YAML.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qc.parse_args">
+<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">parse_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.14)"><span class="pre">argparse.Namespace</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#parse_args"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.parse_args" title="Link to this definition">¶</a></dt>
+<dd><p>Define y procesa los argumentos de entrada desde la terminal.</p>
+<p>¿POR QUÉ ARGPARSE?: Permite que otros científicos usen tu código con sus propios
+datos sin tener que editar el script de Python. Proporciona ayuda automática
+cuando se ejecuta con –help.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="qc.run_qc">
-<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">run_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">processed_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.3)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#run_qc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.run_qc" title="Link to this definition">¶</a></dt>
-<dd><p>Execute biological quality control filtering on a FASTA file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Path to the input raw FASTA file.</p></li>
-<li><p><strong>min_len</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Minimum sequence length required (in bp).</p></li>
-<li><p><strong>max_ns</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Maximum allowed percentage of ambiguous bases (Ns).</p></li>
-<li><p><strong>processed_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Directory where filtered output and stats will be saved.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Summary statistics of all analyzed sequences.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-<div class="admonition-notes admonition">
-<p class="admonition-title">Notes</p>
-<p>The function saves <cite>hiv_filtered.fasta</cite> and <cite>qc_stats.csv</cite> to the
-<cite>processed_path</cite> directory.</p>
-</div>
+<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">run_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_ns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.3)"><span class="pre">pandas.DataFrame</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#run_qc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.run_qc" title="Link to this definition">¶</a></dt>
+<dd><p>Ejecuta el filtrado biológico basado en longitud y ambigüedad.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="qc.generate_plots">
-<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">generate_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.3)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#generate_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.generate_plots" title="Link to this definition">¶</a></dt>
-<dd><p>Generate distribution plots for sequence metrics.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>) – DataFrame containing ‘length’ and ‘gc_content’ columns.</p></li>
-<li><p><strong>output_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Directory where the PNG plot will be saved.</p></li>
-</ul>
-</dd>
-</dl>
+<span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">generate_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.3)"><span class="pre">pandas.DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><span class="pre">pathlib.Path</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#generate_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.generate_plots" title="Link to this definition">¶</a></dt>
+<dd><p>Genera visualizaciones de las métricas de calidad (Longitud y GC).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="qc.main">
 <span class="sig-prename descclassname"><span class="pre">02_qc.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../../_modules/02_qc.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qc.main" title="Link to this definition">¶</a></dt>
-<dd><p>Entry point for the QC script.</p>
+<dd><p>Orquestación principal del script.</p>
 </dd></dl>
 
 </section>
@@ -399,7 +372,9 @@ target region or have &gt;5% ambiguous sites.</p>
 <li><a class="reference internal" href="#">02_qc</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#qc.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
 <li><a class="reference internal" href="#qc.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li><a class="reference internal" href="#qc.parse_args"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
 <li><a class="reference internal" href="#qc.run_qc"><code class="docutils literal notranslate"><span class="pre">run_qc()</span></code></a></li>
 <li><a class="reference internal" href="#qc.generate_plots"><code class="docutils literal notranslate"><span class="pre">generate_plots()</span></code></a></li>
 <li><a class="reference internal" href="#qc.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
