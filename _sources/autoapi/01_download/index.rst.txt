@@ -1,0 +1,79 @@
+01_download
+===========
+
+.. py:module:: 01_download
+
+.. autoapi-nested-parse::
+
+   HIV-1 Sequence Downloader from NCBI Entrez.
+
+   This module provides functionality to download HIV-1 sequences from the NCBI
+   Nucleotide database using specified search queries. It handles batch downloads
+   and saves the results in FASTA format.
+
+   Biological Context:
+       The acquisition of high-quality genomic data is the foundation of any
+       evolutionary analysis. For HIV-1, this typically involves retrieving
+       complete genomes or specific genes (e.g., pol, env) from global repositories
+       to capture the virus's immense genetic diversity.
+
+   Pipeline Stage:
+       Phase 1 of 7: Data Acquisition.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/01_download.py
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   01_download.load_config
+   01_download.download_sequences
+   01_download.main
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary containing paths and parameters.
+   :rtype: Dict[str, Any]
+
+   :raises FileNotFoundError: If 'config.yaml' is missing.
+
+
+.. py:function:: download_sequences(email: str, virus_query: str, max_sequences: int, output_file: str) -> List[Bio.SeqRecord.SeqRecord]
+
+   Download sequences from NCBI Entrez and save them to a FASTA file.
+
+   :param email: Valid email address required by NCBI for Entrez usage.
+   :type email: :py:class:`str`
+   :param virus_query: Entrez search query string.
+   :type virus_query: :py:class:`str`
+   :param max_sequences: Maximum number of sequences to retrieve.
+   :type max_sequences: :py:class:`int`
+   :param output_file: Path where the resulting FASTA file will be saved.
+   :type output_file: :py:class:`str`
+
+   :returns: A list of Biopython SeqRecord objects.
+   :rtype: List[SeqRecord]
+
+   .. admonition:: Notes
+
+      NCBI rate limits apply. This function uses batching to handle large
+      requests (100 sequences per batch).
+
+
+.. py:function:: main() -> None
+
+   Entry point for the download script.
+
+

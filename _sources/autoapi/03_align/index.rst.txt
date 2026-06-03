@@ -1,0 +1,71 @@
+03_align
+========
+
+.. py:module:: 03_align
+
+.. autoapi-nested-parse::
+
+   Multiple Sequence Alignment using MAFFT for HIV-1.
+
+   This module wraps the MAFFT alignment tool to align filtered HIV-1 sequences.
+   It is optimized for large datasets and maintains biological accuracy.
+
+   Biological Context:
+       Accurate alignment is critical for phylogenetic inference. HIV-1 is
+       characterized by hypervariable regions (especially in env) and frequent
+       indels. MAFFT's FFT-NS-2 or PartTree algorithms are preferred for
+       maintaining speed without sacrificing too much accuracy in large datasets.
+
+   Pipeline Stage:
+       Phase 3 of 7: Sequence Alignment.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/03_align.py
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   03_align.load_config
+   03_align.run_mafft
+   03_align.main
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: run_mafft(input_file: str, output_file: str, config: Dict[str, Any]) -> None
+
+   Execute MAFFT alignment with configured parameters.
+
+   :param input_file: Path to the input filtered FASTA file.
+   :type input_file: :py:class:`str`
+   :param output_file: Path where the aligned FASTA will be saved.
+   :type output_file: :py:class:`str`
+   :param config: Configuration dictionary containing tool paths.
+   :type config: :py:class:`Dict[str, Any]`
+
+   .. admonition:: Notes
+
+      Requires MAFFT to be installed at the path specified in `config.yaml`.
+      The `MAFFT_BINARIES` environment variable is automatically configured.
+
+
+.. py:function:: main() -> None
+
+   Entry point for the alignment script.
+
+
