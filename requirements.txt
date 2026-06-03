@@ -9,3 +9,6 @@ numpy>=1.24.0
 scipy>=1.10.0
 biom-format>=2.1.12
 plotly>=5.15.0
+httpx>=0.24.0
+jinja2>=3.1.2
+asyncio

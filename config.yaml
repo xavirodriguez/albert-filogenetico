@@ -26,3 +26,8 @@ phylogeny:
   model: "MFP" # ModelFinder Plus
   bootstrap: 1000
   ufboot: true
+
+analysis:
+  hivdb_api_url: "https://hivdb.stanford.edu/graphql"
+  comet_api_url: "https://comet.retrovirology.lu/api/subtypeQuery"
+  min_confidence: 0.8

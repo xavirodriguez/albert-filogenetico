@@ -1,0 +1,624 @@
+2026-06-03 15:22:39,302 - INFO - Starting HIV-1 subtype identification...
+2026-06-03 15:22:39,475 - WARNING - COMET API attempt 1 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:22:40,480 - WARNING - COMET API attempt 2 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:22:42,485 - WARNING - COMET API attempt 3 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:22:46,594 - WARNING - COMET API attempt 1 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:22:47,598 - WARNING - COMET API attempt 2 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:22:49,604 - WARNING - COMET API attempt 3 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:22:53,713 - WARNING - COMET API attempt 1 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:22:54,718 - WARNING - COMET API attempt 2 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:22:56,724 - WARNING - COMET API attempt 3 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:23:00,833 - WARNING - COMET API attempt 1 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:23:01,837 - WARNING - COMET API attempt 2 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:23:03,844 - WARNING - COMET API attempt 3 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:23:07,952 - WARNING - COMET API attempt 1 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:23:08,957 - WARNING - COMET API attempt 2 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:23:10,962 - WARNING - COMET API attempt 3 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:23:15,071 - WARNING - COMET API attempt 1 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:23:16,076 - WARNING - COMET API attempt 2 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:23:18,082 - WARNING - COMET API attempt 3 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:23:22,190 - WARNING - COMET API attempt 1 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:23:23,195 - WARNING - COMET API attempt 2 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:23:25,201 - WARNING - COMET API attempt 3 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:23:29,310 - WARNING - COMET API attempt 1 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:23:30,315 - WARNING - COMET API attempt 2 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:23:32,322 - WARNING - COMET API attempt 3 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:23:36,433 - WARNING - COMET API attempt 1 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:23:37,437 - WARNING - COMET API attempt 2 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:23:39,443 - WARNING - COMET API attempt 3 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:23:43,551 - WARNING - COMET API attempt 1 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:23:44,555 - WARNING - COMET API attempt 2 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:23:46,561 - WARNING - COMET API attempt 3 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:23:50,979 - INFO - Subtyping completed in 71.68s. Results saved to results/subtypes.csv
+2026-06-03 15:23:50,979 - INFO - Starting drug resistance mutation detection...
+2026-06-03 15:23:50,984 - INFO - Translated PV383164.1 to protein (len: 361)
+2026-06-03 15:23:51,251 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:23:51,252 - ERROR - HIVdb analysis failed for PV383164.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:23:51,253 - INFO - Translated PV383163.1 to protein (len: 360)
+2026-06-03 15:23:51,477 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:23:51,479 - ERROR - HIVdb analysis failed for PV383163.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:23:51,480 - INFO - Translated PV383162.1 to protein (len: 361)
+2026-06-03 15:23:51,636 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:23:51,637 - ERROR - HIVdb analysis failed for PV383162.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:23:51,639 - INFO - Translated PV383161.1 to protein (len: 361)
+2026-06-03 15:23:51,766 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:23:51,768 - ERROR - HIVdb analysis failed for PV383161.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:23:51,769 - INFO - Translated PV383160.1 to protein (len: 346)
+2026-06-03 15:23:51,908 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:23:51,909 - ERROR - HIVdb analysis failed for PV383160.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:23:51,911 - INFO - Resistance analysis completed in 0.93s. Results saved to results/resistance_report.csv
+2026-06-03 15:23:51,911 - INFO - Generating integrated HTML summary report...
+2026-06-03 15:23:51,931 - INFO - Report generated in 0.02s at results/summary_report.html
+2026-06-03 15:25:34,626 - INFO - Starting HIV-1 subtype identification...
+2026-06-03 15:25:34,792 - WARNING - COMET API attempt 1 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:25:35,797 - WARNING - COMET API attempt 2 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:25:37,803 - WARNING - COMET API attempt 3 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:25:41,911 - WARNING - COMET API attempt 1 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:25:42,916 - WARNING - COMET API attempt 2 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:25:44,922 - WARNING - COMET API attempt 3 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:25:49,030 - WARNING - COMET API attempt 1 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:25:50,035 - WARNING - COMET API attempt 2 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:25:52,041 - WARNING - COMET API attempt 3 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:25:56,150 - WARNING - COMET API attempt 1 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:25:57,154 - WARNING - COMET API attempt 2 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:25:59,162 - WARNING - COMET API attempt 3 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:26:03,271 - WARNING - COMET API attempt 1 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:26:04,276 - WARNING - COMET API attempt 2 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:26:06,281 - WARNING - COMET API attempt 3 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:26:10,390 - WARNING - COMET API attempt 1 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:26:11,395 - WARNING - COMET API attempt 2 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:26:13,401 - WARNING - COMET API attempt 3 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:26:17,509 - WARNING - COMET API attempt 1 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:26:18,514 - WARNING - COMET API attempt 2 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:26:20,520 - WARNING - COMET API attempt 3 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:26:24,628 - WARNING - COMET API attempt 1 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:26:25,633 - WARNING - COMET API attempt 2 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:26:27,639 - WARNING - COMET API attempt 3 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:26:31,748 - WARNING - COMET API attempt 1 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:26:32,753 - WARNING - COMET API attempt 2 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:26:34,759 - WARNING - COMET API attempt 3 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:26:38,866 - WARNING - COMET API attempt 1 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:26:39,871 - WARNING - COMET API attempt 2 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:26:41,877 - WARNING - COMET API attempt 3 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:26:46,385 - INFO - Subtyping completed in 71.76s. Results saved to results/subtypes.csv
+2026-06-03 15:26:46,385 - INFO - Starting drug resistance mutation detection...
+2026-06-03 15:26:46,390 - INFO - Translated PV383164.1 to protein (len: 361)
+2026-06-03 15:26:46,630 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:26:46,632 - ERROR - HIVdb analysis failed for PV383164.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:26:46,633 - INFO - Translated PV383163.1 to protein (len: 360)
+2026-06-03 15:26:46,857 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:26:46,859 - ERROR - HIVdb analysis failed for PV383163.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:26:46,860 - INFO - Translated PV383162.1 to protein (len: 361)
+2026-06-03 15:26:47,000 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:26:47,002 - ERROR - HIVdb analysis failed for PV383162.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:26:47,003 - INFO - Translated PV383161.1 to protein (len: 361)
+2026-06-03 15:26:47,133 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:26:47,135 - ERROR - HIVdb analysis failed for PV383161.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:26:47,136 - INFO - Translated PV383160.1 to protein (len: 346)
+2026-06-03 15:26:47,269 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:26:47,271 - ERROR - HIVdb analysis failed for PV383160.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:26:47,273 - INFO - Resistance analysis completed in 0.89s. Results saved to results/resistance_report.csv
+2026-06-03 15:26:47,273 - INFO - Generating integrated HTML summary report...
+2026-06-03 15:26:47,293 - INFO - Report generated in 0.02s at results/summary_report.html
+2026-06-03 15:29:37,129 - INFO - Starting HIV-1 subtype identification...
+2026-06-03 15:29:37,477 - WARNING - COMET API attempt 1 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:29:38,483 - WARNING - COMET API attempt 2 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:29:40,489 - WARNING - COMET API attempt 3 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:29:44,598 - WARNING - COMET API attempt 1 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:29:45,603 - WARNING - COMET API attempt 2 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:29:47,609 - WARNING - COMET API attempt 3 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:29:51,718 - WARNING - COMET API attempt 1 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:29:52,722 - WARNING - COMET API attempt 2 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:29:54,728 - WARNING - COMET API attempt 3 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:29:58,836 - WARNING - COMET API attempt 1 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:29:59,842 - WARNING - COMET API attempt 2 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:30:01,848 - WARNING - COMET API attempt 3 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:30:05,957 - WARNING - COMET API attempt 1 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:30:06,962 - WARNING - COMET API attempt 2 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:30:08,968 - WARNING - COMET API attempt 3 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:30:13,076 - WARNING - COMET API attempt 1 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:30:14,081 - WARNING - COMET API attempt 2 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:30:16,087 - WARNING - COMET API attempt 3 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:30:20,196 - WARNING - COMET API attempt 1 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:30:21,201 - WARNING - COMET API attempt 2 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:30:23,207 - WARNING - COMET API attempt 3 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:30:27,316 - WARNING - COMET API attempt 1 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:30:28,321 - WARNING - COMET API attempt 2 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:30:30,326 - WARNING - COMET API attempt 3 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:30:34,435 - WARNING - COMET API attempt 1 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:30:35,440 - WARNING - COMET API attempt 2 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:30:37,445 - WARNING - COMET API attempt 3 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:30:41,554 - WARNING - COMET API attempt 1 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:30:42,558 - WARNING - COMET API attempt 2 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:30:44,564 - WARNING - COMET API attempt 3 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:30:48,673 - WARNING - COMET API attempt 1 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:30:49,678 - WARNING - COMET API attempt 2 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:30:51,685 - WARNING - COMET API attempt 3 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:30:55,793 - WARNING - COMET API attempt 1 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:30:56,798 - WARNING - COMET API attempt 2 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:30:58,805 - WARNING - COMET API attempt 3 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:31:02,913 - WARNING - COMET API attempt 1 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:31:03,918 - WARNING - COMET API attempt 2 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:31:05,923 - WARNING - COMET API attempt 3 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:31:10,032 - WARNING - COMET API attempt 1 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:31:11,037 - WARNING - COMET API attempt 2 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:31:13,043 - WARNING - COMET API attempt 3 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:31:17,151 - WARNING - COMET API attempt 1 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:31:18,156 - WARNING - COMET API attempt 2 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:31:20,162 - WARNING - COMET API attempt 3 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:31:24,271 - WARNING - COMET API attempt 1 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:31:25,275 - WARNING - COMET API attempt 2 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:31:27,281 - WARNING - COMET API attempt 3 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:31:31,389 - WARNING - COMET API attempt 1 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:31:32,394 - WARNING - COMET API attempt 2 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:31:34,400 - WARNING - COMET API attempt 3 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:31:38,510 - WARNING - COMET API attempt 1 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:31:39,515 - WARNING - COMET API attempt 2 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:31:41,520 - WARNING - COMET API attempt 3 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:31:45,629 - WARNING - COMET API attempt 1 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:31:46,634 - WARNING - COMET API attempt 2 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:31:48,640 - WARNING - COMET API attempt 3 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:31:52,749 - WARNING - COMET API attempt 1 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:31:53,754 - WARNING - COMET API attempt 2 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:31:55,760 - WARNING - COMET API attempt 3 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:31:59,868 - WARNING - COMET API attempt 1 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:32:00,873 - WARNING - COMET API attempt 2 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:32:02,879 - WARNING - COMET API attempt 3 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:32:06,991 - WARNING - COMET API attempt 1 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:32:07,997 - WARNING - COMET API attempt 2 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:32:10,003 - WARNING - COMET API attempt 3 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:32:14,111 - WARNING - COMET API attempt 1 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:32:15,116 - WARNING - COMET API attempt 2 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:32:17,122 - WARNING - COMET API attempt 3 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:32:21,230 - WARNING - COMET API attempt 1 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:32:22,235 - WARNING - COMET API attempt 2 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:32:24,241 - WARNING - COMET API attempt 3 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:32:28,349 - WARNING - COMET API attempt 1 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:32:29,354 - WARNING - COMET API attempt 2 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:32:31,360 - WARNING - COMET API attempt 3 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:32:35,469 - WARNING - COMET API attempt 1 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:32:36,474 - WARNING - COMET API attempt 2 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:32:38,479 - WARNING - COMET API attempt 3 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:32:42,588 - WARNING - COMET API attempt 1 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:32:43,593 - WARNING - COMET API attempt 2 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:32:45,598 - WARNING - COMET API attempt 3 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:32:49,707 - WARNING - COMET API attempt 1 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:32:50,712 - WARNING - COMET API attempt 2 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:32:52,719 - WARNING - COMET API attempt 3 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:32:56,827 - WARNING - COMET API attempt 1 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:32:57,832 - WARNING - COMET API attempt 2 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:32:59,837 - WARNING - COMET API attempt 3 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:33:03,946 - WARNING - COMET API attempt 1 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:33:04,951 - WARNING - COMET API attempt 2 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:33:06,957 - WARNING - COMET API attempt 3 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:33:11,065 - WARNING - COMET API attempt 1 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:33:12,071 - WARNING - COMET API attempt 2 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:33:14,076 - WARNING - COMET API attempt 3 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:33:18,185 - WARNING - COMET API attempt 1 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:33:19,189 - WARNING - COMET API attempt 2 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:33:21,195 - WARNING - COMET API attempt 3 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:33:25,304 - WARNING - COMET API attempt 1 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:33:26,308 - WARNING - COMET API attempt 2 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:33:28,314 - WARNING - COMET API attempt 3 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:33:32,423 - WARNING - COMET API attempt 1 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:33:33,428 - WARNING - COMET API attempt 2 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:33:35,434 - WARNING - COMET API attempt 3 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:33:39,543 - WARNING - COMET API attempt 1 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:33:40,547 - WARNING - COMET API attempt 2 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:33:42,552 - WARNING - COMET API attempt 3 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:33:46,661 - WARNING - COMET API attempt 1 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:33:47,666 - WARNING - COMET API attempt 2 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:33:49,672 - WARNING - COMET API attempt 3 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:33:53,781 - WARNING - COMET API attempt 1 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:33:54,786 - WARNING - COMET API attempt 2 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:33:56,793 - WARNING - COMET API attempt 3 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:34:00,901 - WARNING - COMET API attempt 1 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:34:01,906 - WARNING - COMET API attempt 2 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:34:03,912 - WARNING - COMET API attempt 3 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:34:08,927 - INFO - Subtyping completed in 271.80s
+2026-06-03 15:34:08,927 - INFO - Starting drug resistance mutation detection...
+2026-06-03 15:34:09,222 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:09,225 - ERROR - HIVdb analysis failed for PV383164.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:09,412 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:09,414 - ERROR - HIVdb analysis failed for PV383163.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:09,670 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:09,672 - ERROR - HIVdb analysis failed for PV383162.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:09,849 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:09,852 - ERROR - HIVdb analysis failed for PV383161.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:10,175 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:10,177 - ERROR - HIVdb analysis failed for PV383160.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:10,339 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:10,341 - ERROR - HIVdb analysis failed for PV383159.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:10,521 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:10,523 - ERROR - HIVdb analysis failed for PV383157.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:10,700 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:10,702 - ERROR - HIVdb analysis failed for PV383156.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:10,885 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:10,887 - ERROR - HIVdb analysis failed for PV383154.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,051 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,053 - ERROR - HIVdb analysis failed for PV383153.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,221 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,223 - ERROR - HIVdb analysis failed for PV383150.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,358 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,360 - ERROR - HIVdb analysis failed for PV383149.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,510 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,511 - ERROR - HIVdb analysis failed for PV383148.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,651 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,652 - ERROR - HIVdb analysis failed for PV383147.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,799 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,801 - ERROR - HIVdb analysis failed for PV383146.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:11,933 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:11,935 - ERROR - HIVdb analysis failed for PV383145.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,066 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,068 - ERROR - HIVdb analysis failed for PV383144.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,200 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,201 - ERROR - HIVdb analysis failed for PV383143.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,335 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,336 - ERROR - HIVdb analysis failed for PV383142.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,470 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,472 - ERROR - HIVdb analysis failed for PV383141.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,634 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,635 - ERROR - HIVdb analysis failed for PV383138.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,798 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,800 - ERROR - HIVdb analysis failed for PV383137.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:12,952 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:12,953 - ERROR - HIVdb analysis failed for PV383136.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,086 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,088 - ERROR - HIVdb analysis failed for PV383133.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,223 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,224 - ERROR - HIVdb analysis failed for PV383132.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,358 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,359 - ERROR - HIVdb analysis failed for PV383131.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,503 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,504 - ERROR - HIVdb analysis failed for PV383130.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,634 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,636 - ERROR - HIVdb analysis failed for PV383129.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,785 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,787 - ERROR - HIVdb analysis failed for PV383123.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:13,924 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:13,925 - ERROR - HIVdb analysis failed for PV383122.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,055 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,056 - ERROR - HIVdb analysis failed for PV383121.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,188 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,189 - ERROR - HIVdb analysis failed for PV383120.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,355 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,356 - ERROR - HIVdb analysis failed for PV383119.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,491 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,493 - ERROR - HIVdb analysis failed for PV383118.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,620 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,621 - ERROR - HIVdb analysis failed for PV383117.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,749 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,751 - ERROR - HIVdb analysis failed for PV383116.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:14,886 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:14,888 - ERROR - HIVdb analysis failed for PV383115.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:15,016 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 400 "
+2026-06-03 15:34:15,018 - ERROR - HIVdb analysis failed for PV383114.1: Client error '400 ' for url 'https://hivdb.stanford.edu/graphql'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+2026-06-03 15:34:15,021 - INFO - Resistance analysis completed in 6.09s
+2026-06-03 15:34:15,021 - INFO - Generating HTML summary report...
+2026-06-03 15:34:15,044 - INFO - Report generated in 0.02s
+2026-06-03 15:38:13,185 - INFO - Starting HIV-1 subtype identification...
+2026-06-03 15:38:13,352 - WARNING - COMET API attempt 1 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:38:14,357 - WARNING - COMET API attempt 2 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:38:16,365 - WARNING - COMET API attempt 3 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:38:20,474 - WARNING - COMET API attempt 1 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:38:21,480 - WARNING - COMET API attempt 2 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:38:23,486 - WARNING - COMET API attempt 3 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:38:27,595 - WARNING - COMET API attempt 1 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:38:28,600 - WARNING - COMET API attempt 2 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:38:30,606 - WARNING - COMET API attempt 3 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:38:34,714 - WARNING - COMET API attempt 1 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:38:35,719 - WARNING - COMET API attempt 2 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:38:37,724 - WARNING - COMET API attempt 3 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:38:41,833 - WARNING - COMET API attempt 1 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:38:42,837 - WARNING - COMET API attempt 2 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:38:44,843 - WARNING - COMET API attempt 3 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:38:48,951 - WARNING - COMET API attempt 1 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:38:49,956 - WARNING - COMET API attempt 2 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:38:51,963 - WARNING - COMET API attempt 3 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:38:56,071 - WARNING - COMET API attempt 1 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:38:57,075 - WARNING - COMET API attempt 2 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:38:59,081 - WARNING - COMET API attempt 3 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:39:03,188 - WARNING - COMET API attempt 1 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:39:04,193 - WARNING - COMET API attempt 2 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:39:06,199 - WARNING - COMET API attempt 3 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:39:10,307 - WARNING - COMET API attempt 1 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:39:11,311 - WARNING - COMET API attempt 2 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:39:13,317 - WARNING - COMET API attempt 3 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:39:17,425 - WARNING - COMET API attempt 1 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:39:18,431 - WARNING - COMET API attempt 2 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:39:20,437 - WARNING - COMET API attempt 3 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:39:24,545 - WARNING - COMET API attempt 1 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:39:25,550 - WARNING - COMET API attempt 2 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:39:27,557 - WARNING - COMET API attempt 3 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:39:31,665 - WARNING - COMET API attempt 1 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:39:32,670 - WARNING - COMET API attempt 2 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:39:34,676 - WARNING - COMET API attempt 3 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:39:38,786 - WARNING - COMET API attempt 1 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:39:39,793 - WARNING - COMET API attempt 2 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:39:41,798 - WARNING - COMET API attempt 3 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:39:45,907 - WARNING - COMET API attempt 1 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:39:46,912 - WARNING - COMET API attempt 2 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:39:48,917 - WARNING - COMET API attempt 3 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:39:53,026 - WARNING - COMET API attempt 1 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:39:54,030 - WARNING - COMET API attempt 2 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:39:56,036 - WARNING - COMET API attempt 3 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:40:00,145 - WARNING - COMET API attempt 1 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:40:01,150 - WARNING - COMET API attempt 2 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:40:03,155 - WARNING - COMET API attempt 3 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:40:07,263 - WARNING - COMET API attempt 1 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:40:08,268 - WARNING - COMET API attempt 2 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:40:10,273 - WARNING - COMET API attempt 3 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:40:14,381 - WARNING - COMET API attempt 1 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:40:15,386 - WARNING - COMET API attempt 2 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:40:17,392 - WARNING - COMET API attempt 3 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:40:21,501 - WARNING - COMET API attempt 1 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:40:22,505 - WARNING - COMET API attempt 2 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:40:24,511 - WARNING - COMET API attempt 3 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:40:28,619 - WARNING - COMET API attempt 1 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:40:29,623 - WARNING - COMET API attempt 2 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:40:31,629 - WARNING - COMET API attempt 3 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:40:35,737 - WARNING - COMET API attempt 1 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:40:36,742 - WARNING - COMET API attempt 2 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:40:38,747 - WARNING - COMET API attempt 3 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:40:42,856 - WARNING - COMET API attempt 1 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:40:43,861 - WARNING - COMET API attempt 2 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:40:45,867 - WARNING - COMET API attempt 3 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:40:49,976 - WARNING - COMET API attempt 1 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:40:50,981 - WARNING - COMET API attempt 2 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:40:52,986 - WARNING - COMET API attempt 3 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:40:57,095 - WARNING - COMET API attempt 1 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:40:58,099 - WARNING - COMET API attempt 2 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:41:00,105 - WARNING - COMET API attempt 3 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:41:04,213 - WARNING - COMET API attempt 1 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:41:05,218 - WARNING - COMET API attempt 2 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:41:07,224 - WARNING - COMET API attempt 3 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:41:11,332 - WARNING - COMET API attempt 1 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:41:12,337 - WARNING - COMET API attempt 2 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:41:14,343 - WARNING - COMET API attempt 3 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:41:18,451 - WARNING - COMET API attempt 1 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:41:19,456 - WARNING - COMET API attempt 2 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:41:21,461 - WARNING - COMET API attempt 3 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:41:25,570 - WARNING - COMET API attempt 1 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:41:26,575 - WARNING - COMET API attempt 2 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:41:28,581 - WARNING - COMET API attempt 3 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:41:32,689 - WARNING - COMET API attempt 1 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:41:33,693 - WARNING - COMET API attempt 2 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:41:35,699 - WARNING - COMET API attempt 3 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:41:39,807 - WARNING - COMET API attempt 1 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:41:40,811 - WARNING - COMET API attempt 2 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:41:42,817 - WARNING - COMET API attempt 3 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:41:46,924 - WARNING - COMET API attempt 1 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:41:47,929 - WARNING - COMET API attempt 2 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:41:49,935 - WARNING - COMET API attempt 3 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:41:54,044 - WARNING - COMET API attempt 1 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:41:55,048 - WARNING - COMET API attempt 2 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:41:57,054 - WARNING - COMET API attempt 3 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:42:01,162 - WARNING - COMET API attempt 1 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:42:02,167 - WARNING - COMET API attempt 2 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:42:04,172 - WARNING - COMET API attempt 3 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:42:08,280 - WARNING - COMET API attempt 1 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:42:09,285 - WARNING - COMET API attempt 2 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:42:11,291 - WARNING - COMET API attempt 3 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:42:15,398 - WARNING - COMET API attempt 1 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:42:16,403 - WARNING - COMET API attempt 2 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:42:18,408 - WARNING - COMET API attempt 3 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:42:22,518 - WARNING - COMET API attempt 1 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:42:23,526 - WARNING - COMET API attempt 2 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:42:25,532 - WARNING - COMET API attempt 3 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:42:29,641 - WARNING - COMET API attempt 1 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:42:30,645 - WARNING - COMET API attempt 2 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:42:32,651 - WARNING - COMET API attempt 3 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:42:36,758 - WARNING - COMET API attempt 1 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:42:37,763 - WARNING - COMET API attempt 2 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:42:39,769 - WARNING - COMET API attempt 3 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:42:44,543 - INFO - Subtyping completed in 271.36s
+2026-06-03 15:42:44,544 - INFO - Starting drug resistance mutation detection...
+2026-06-03 15:42:45,216 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:45,855 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:46,405 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:46,948 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:47,495 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:48,026 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:48,592 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:49,150 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:49,710 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:50,297 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:50,875 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:51,440 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:51,997 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:52,543 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:53,090 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:53,645 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:54,208 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:54,737 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:55,275 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:55,850 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:56,417 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:56,971 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:57,505 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:58,057 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:58,600 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:59,165 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:42:59,713 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:00,291 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:00,810 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:01,364 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:01,893 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:02,444 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:02,993 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:03,555 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:04,132 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:04,709 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:05,275 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:05,810 - INFO - HTTP Request: POST https://hivdb.stanford.edu/graphql "HTTP/1.1 200 "
+2026-06-03 15:43:08,339 - INFO - Resistance analysis completed in 23.80s
+2026-06-03 15:43:08,339 - INFO - Generating HTML summary report...
+2026-06-03 15:43:08,469 - INFO - Report generated in 0.13s
+2026-06-03 15:46:20,335 - INFO - Starting HIV-1 subtype identification...
+2026-06-03 15:46:20,500 - WARNING - COMET API attempt 1 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:46:21,505 - WARNING - COMET API attempt 2 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:46:23,511 - WARNING - COMET API attempt 3 failed for PV383164.1: [Errno -2] Name or service not known
+2026-06-03 15:46:27,621 - WARNING - COMET API attempt 1 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:46:28,628 - WARNING - COMET API attempt 2 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:46:30,633 - WARNING - COMET API attempt 3 failed for PV383163.1: [Errno -2] Name or service not known
+2026-06-03 15:46:34,741 - WARNING - COMET API attempt 1 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:46:35,746 - WARNING - COMET API attempt 2 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:46:37,751 - WARNING - COMET API attempt 3 failed for PV383162.1: [Errno -2] Name or service not known
+2026-06-03 15:46:41,859 - WARNING - COMET API attempt 1 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:46:42,863 - WARNING - COMET API attempt 2 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:46:44,869 - WARNING - COMET API attempt 3 failed for PV383161.1: [Errno -2] Name or service not known
+2026-06-03 15:46:48,973 - WARNING - COMET API attempt 1 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:46:49,978 - WARNING - COMET API attempt 2 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:46:51,983 - WARNING - COMET API attempt 3 failed for PV383160.1: [Errno -2] Name or service not known
+2026-06-03 15:46:56,092 - WARNING - COMET API attempt 1 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:46:57,097 - WARNING - COMET API attempt 2 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:46:59,102 - WARNING - COMET API attempt 3 failed for PV383159.1: [Errno -2] Name or service not known
+2026-06-03 15:47:03,210 - WARNING - COMET API attempt 1 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:47:04,215 - WARNING - COMET API attempt 2 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:47:06,220 - WARNING - COMET API attempt 3 failed for PV383157.1: [Errno -2] Name or service not known
+2026-06-03 15:47:10,328 - WARNING - COMET API attempt 1 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:47:11,333 - WARNING - COMET API attempt 2 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:47:13,338 - WARNING - COMET API attempt 3 failed for PV383156.1: [Errno -2] Name or service not known
+2026-06-03 15:47:17,444 - WARNING - COMET API attempt 1 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:47:18,448 - WARNING - COMET API attempt 2 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:47:20,454 - WARNING - COMET API attempt 3 failed for PV383154.1: [Errno -2] Name or service not known
+2026-06-03 15:47:24,561 - WARNING - COMET API attempt 1 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:47:25,565 - WARNING - COMET API attempt 2 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:47:27,568 - WARNING - COMET API attempt 3 failed for PV383153.1: [Errno -2] Name or service not known
+2026-06-03 15:47:31,677 - WARNING - COMET API attempt 1 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:47:32,681 - WARNING - COMET API attempt 2 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:47:34,687 - WARNING - COMET API attempt 3 failed for PV383150.1: [Errno -2] Name or service not known
+2026-06-03 15:47:38,796 - WARNING - COMET API attempt 1 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:47:39,801 - WARNING - COMET API attempt 2 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:47:41,806 - WARNING - COMET API attempt 3 failed for PV383149.1: [Errno -2] Name or service not known
+2026-06-03 15:47:45,914 - WARNING - COMET API attempt 1 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:47:46,919 - WARNING - COMET API attempt 2 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:47:48,925 - WARNING - COMET API attempt 3 failed for PV383148.1: [Errno -2] Name or service not known
+2026-06-03 15:47:53,032 - WARNING - COMET API attempt 1 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:47:54,037 - WARNING - COMET API attempt 2 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:47:56,043 - WARNING - COMET API attempt 3 failed for PV383147.1: [Errno -2] Name or service not known
+2026-06-03 15:48:00,151 - WARNING - COMET API attempt 1 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:48:01,155 - WARNING - COMET API attempt 2 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:48:03,160 - WARNING - COMET API attempt 3 failed for PV383146.1: [Errno -2] Name or service not known
+2026-06-03 15:48:07,269 - WARNING - COMET API attempt 1 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:48:08,274 - WARNING - COMET API attempt 2 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:48:10,299 - WARNING - COMET API attempt 3 failed for PV383145.1: [Errno -2] Name or service not known
+2026-06-03 15:48:14,406 - WARNING - COMET API attempt 1 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:48:15,411 - WARNING - COMET API attempt 2 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:48:17,416 - WARNING - COMET API attempt 3 failed for PV383144.1: [Errno -2] Name or service not known
+2026-06-03 15:48:21,525 - WARNING - COMET API attempt 1 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:48:22,530 - WARNING - COMET API attempt 2 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:48:24,535 - WARNING - COMET API attempt 3 failed for PV383143.1: [Errno -2] Name or service not known
+2026-06-03 15:48:28,643 - WARNING - COMET API attempt 1 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:48:29,649 - WARNING - COMET API attempt 2 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:48:31,657 - WARNING - COMET API attempt 3 failed for PV383142.1: [Errno -2] Name or service not known
+2026-06-03 15:48:35,765 - WARNING - COMET API attempt 1 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:48:36,770 - WARNING - COMET API attempt 2 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:48:38,776 - WARNING - COMET API attempt 3 failed for PV383141.1: [Errno -2] Name or service not known
+2026-06-03 15:48:42,884 - WARNING - COMET API attempt 1 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:48:43,889 - WARNING - COMET API attempt 2 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:48:45,894 - WARNING - COMET API attempt 3 failed for PV383138.1: [Errno -2] Name or service not known
+2026-06-03 15:48:50,002 - WARNING - COMET API attempt 1 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:48:51,006 - WARNING - COMET API attempt 2 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:48:53,012 - WARNING - COMET API attempt 3 failed for PV383137.1: [Errno -2] Name or service not known
+2026-06-03 15:48:57,120 - WARNING - COMET API attempt 1 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:48:58,124 - WARNING - COMET API attempt 2 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:49:00,130 - WARNING - COMET API attempt 3 failed for PV383136.1: [Errno -2] Name or service not known
+2026-06-03 15:49:04,238 - WARNING - COMET API attempt 1 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:49:05,243 - WARNING - COMET API attempt 2 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:49:07,248 - WARNING - COMET API attempt 3 failed for PV383133.1: [Errno -2] Name or service not known
+2026-06-03 15:49:11,356 - WARNING - COMET API attempt 1 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:49:12,360 - WARNING - COMET API attempt 2 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:49:14,366 - WARNING - COMET API attempt 3 failed for PV383132.1: [Errno -2] Name or service not known
+2026-06-03 15:49:18,473 - WARNING - COMET API attempt 1 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:49:19,478 - WARNING - COMET API attempt 2 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:49:21,484 - WARNING - COMET API attempt 3 failed for PV383131.1: [Errno -2] Name or service not known
+2026-06-03 15:49:25,592 - WARNING - COMET API attempt 1 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:49:26,597 - WARNING - COMET API attempt 2 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:49:28,602 - WARNING - COMET API attempt 3 failed for PV383130.1: [Errno -2] Name or service not known
+2026-06-03 15:49:32,710 - WARNING - COMET API attempt 1 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:49:33,715 - WARNING - COMET API attempt 2 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:49:35,722 - WARNING - COMET API attempt 3 failed for PV383129.1: [Errno -2] Name or service not known
+2026-06-03 15:49:39,829 - WARNING - COMET API attempt 1 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:49:40,833 - WARNING - COMET API attempt 2 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:49:42,839 - WARNING - COMET API attempt 3 failed for PV383123.1: [Errno -2] Name or service not known
+2026-06-03 15:49:46,947 - WARNING - COMET API attempt 1 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:49:47,951 - WARNING - COMET API attempt 2 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:49:49,957 - WARNING - COMET API attempt 3 failed for PV383122.1: [Errno -2] Name or service not known
+2026-06-03 15:49:54,065 - WARNING - COMET API attempt 1 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:49:55,070 - WARNING - COMET API attempt 2 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:49:57,075 - WARNING - COMET API attempt 3 failed for PV383121.1: [Errno -2] Name or service not known
+2026-06-03 15:50:01,183 - WARNING - COMET API attempt 1 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:50:02,188 - WARNING - COMET API attempt 2 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:50:04,193 - WARNING - COMET API attempt 3 failed for PV383120.1: [Errno -2] Name or service not known
+2026-06-03 15:50:08,301 - WARNING - COMET API attempt 1 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:50:09,306 - WARNING - COMET API attempt 2 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:50:11,311 - WARNING - COMET API attempt 3 failed for PV383119.1: [Errno -2] Name or service not known
+2026-06-03 15:50:15,420 - WARNING - COMET API attempt 1 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:50:16,425 - WARNING - COMET API attempt 2 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:50:18,430 - WARNING - COMET API attempt 3 failed for PV383118.1: [Errno -2] Name or service not known
+2026-06-03 15:50:22,538 - WARNING - COMET API attempt 1 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:50:23,543 - WARNING - COMET API attempt 2 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:50:25,549 - WARNING - COMET API attempt 3 failed for PV383117.1: [Errno -2] Name or service not known
+2026-06-03 15:50:29,657 - WARNING - COMET API attempt 1 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:50:30,661 - WARNING - COMET API attempt 2 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:50:32,668 - WARNING - COMET API attempt 3 failed for PV383116.1: [Errno -2] Name or service not known
+2026-06-03 15:50:36,777 - WARNING - COMET API attempt 1 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:50:37,781 - WARNING - COMET API attempt 2 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:50:39,787 - WARNING - COMET API attempt 3 failed for PV383115.1: [Errno -2] Name or service not known
+2026-06-03 15:50:43,895 - WARNING - COMET API attempt 1 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:50:44,899 - WARNING - COMET API attempt 2 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:50:46,904 - WARNING - COMET API attempt 3 failed for PV383114.1: [Errno -2] Name or service not known
+2026-06-03 15:50:51,649 - INFO - Subtyping completed in 271.31s
+2026-06-03 15:50:51,649 - INFO - Starting drug resistance mutation detection...
+2026-06-03 15:50:54,003 - INFO - Resistance analysis completed in 2.35s
+2026-06-03 15:50:54,003 - INFO - Generating HTML summary report...
+2026-06-03 15:50:54,128 - INFO - Report generated in 0.13s
