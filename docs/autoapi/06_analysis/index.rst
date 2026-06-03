@@ -1,0 +1,210 @@
+06_analysis
+===========
+
+.. py:module:: 06_analysis
+
+.. autoapi-nested-parse::
+
+   HIV-1 Virology Analysis: Subtyping and Drug Resistance Detection.
+
+   This module integrates with the COMET API for subtyping and the Stanford
+   HIVdb GraphQL API for identifying drug resistance mutations. It also
+   provides local fallback subtyping and generates a comprehensive HTML report.
+
+   Biological Context:
+       Subtyping is essential for understanding the molecular epidemiology of
+       HIV-1. Resistance mutations in the pol gene (Protease, Reverse
+       Transcriptase, Integrase) determine the efficacy of antiretroviral
+       therapy (ART). Monitoring these mutations is crucial for clinical
+       management and public health.
+
+   Pipeline Stage:
+       Phase 6 of 7: Virological Analysis.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/06_analysis.py
+
+
+
+Exceptions
+----------
+
+.. autoapisummary::
+
+   06_analysis.NetworkError
+   06_analysis.TranslationError
+   06_analysis.APIRateLimitError
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   06_analysis.load_config
+   06_analysis.get_cache_path
+   06_analysis.call_comet_api
+   06_analysis.fallback_subtyping
+   06_analysis.identify_subtypes
+   06_analysis.translate_pol
+   06_analysis.call_hivdb_api
+   06_analysis.check_resistance_mutations
+   06_analysis.generate_report
+   06_analysis.main
+
+
+Module Contents
+---------------
+
+.. py:exception:: NetworkError
+
+   Bases: :py:obj:`Exception`
+
+
+   Custom exception for network-related failures.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:exception:: TranslationError
+
+   Bases: :py:obj:`Exception`
+
+
+   Custom exception for protein translation failures.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:exception:: APIRateLimitError
+
+   Bases: :py:obj:`Exception`
+
+
+   Custom exception for API rate limit exceeding.
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: get_cache_path(sequence: Union[str, Bio.Seq.Seq], prefix: str) -> str
+
+   Generate a deterministic cache file path based on sequence content.
+
+   :param sequence: The DNA sequence to hash.
+   :param prefix: Prefix for the cache file (e.g., 'comet', 'hivdb').
+   :type prefix: :py:class:`str`
+
+   :returns: Path to the JSON cache file.
+   :rtype: str
+
+
+.. py:function:: call_comet_api(sequences: List[Bio.SeqRecord.SeqRecord], api_url: str) -> List[Optional[Dict[str, Any]]]
+   :async:
+
+
+   Calls COMET HIV-1 Subtyping API with caching and retry logic.
+
+   :param sequences: List of sequences to subtype.
+   :type sequences: :py:class:`List[SeqRecord]`
+   :param api_url: URL of the COMET API.
+   :type api_url: :py:class:`str`
+
+   :returns: List of subtyping results or None on failure.
+   :rtype: List[Optional[Dict[str, Any]]]
+
+   .. admonition:: Notes
+
+      Ref: Struck et al. (2014) COMET: adaptive context-based modeling
+      for ultra-fast HIV-1 subtyping.
+
+
+.. py:function:: fallback_subtyping(sequences: List[Bio.SeqRecord.SeqRecord], ref_file: str) -> List[Dict[str, Any]]
+
+   Fallback subtyping using local alignment against reference sequences.
+
+   :param sequences: Sequences to subtype.
+   :type sequences: :py:class:`List[SeqRecord]`
+   :param ref_file: Path to the reference FASTA file.
+   :type ref_file: :py:class:`str`
+
+   :returns: Subtyping results based on local alignment scores.
+   :rtype: List[Dict[str, Any]]
+
+
+.. py:function:: identify_subtypes(fasta_file: str, results_path: str) -> pandas.DataFrame
+
+   Identify HIV-1 subtypes using API calls and local fallback.
+
+   :param fasta_file: Path to the filtered FASTA file.
+   :type fasta_file: :py:class:`str`
+   :param results_path: Directory to save subtyping results and plots.
+   :type results_path: :py:class:`str`
+
+   :returns: DataFrame containing IDs and identified subtypes.
+   :rtype: pd.DataFrame
+
+
+.. py:function:: translate_pol(sequence: str) -> str
+
+   Translate DNA pol sequence to protein in the best reading frame.
+
+   :param sequence: DNA sequence string.
+   :type sequence: :py:class:`str`
+
+   :returns: Translated amino acid sequence.
+   :rtype: str
+
+   :raises TranslationError: If no valid protein could be translated.
+
+
+.. py:function:: call_hivdb_api(sequence_record: Bio.SeqRecord.SeqRecord, api_url: str) -> Dict[str, Any]
+   :async:
+
+
+   Calls Stanford HIVdb GraphQL API (Sierra) for drug resistance.
+
+   :param sequence_record: Sequence to analyze.
+   :type sequence_record: :py:class:`SeqRecord`
+   :param api_url: Sierra API URL.
+   :type api_url: :py:class:`str`
+
+   :returns: JSON response from the API.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: check_resistance_mutations(fasta_file: str) -> pandas.DataFrame
+
+   Detect drug resistance mutations using Stanford HIVdb API.
+
+   :param fasta_file: Path to the input FASTA file.
+   :type fasta_file: :py:class:`str`
+
+   :returns: Report containing drugs, scores, and resistance levels.
+   :rtype: pd.DataFrame
+
+
+.. py:function:: generate_report(subtypes_df: pandas.DataFrame, resistance_df: pandas.DataFrame, results_path: str) -> None
+
+   Generate a consolidated HTML report with figures and tables.
+
+   :param subtypes_df: DataFrame of subtyping results.
+   :type subtypes_df: :py:class:`pd.DataFrame`
+   :param resistance_df: DataFrame of drug resistance results.
+   :type resistance_df: :py:class:`pd.DataFrame`
+   :param results_path: Directory where the HTML report will be saved.
+   :type results_path: :py:class:`str`
+
+
+.. py:function:: main() -> None
+
+   Entry point for the virology analysis script.

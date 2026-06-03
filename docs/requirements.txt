@@ -1,0 +1,18 @@
+# === FILE: docs/requirements.txt ===
+# Requirements for building the documentation
+# This excludes the heavy bioinformatics dependencies
+sphinx>=7.0
+furo
+sphinx-autoapi
+myst-parser
+sphinx-copybutton
+sphinx-autodoc-typehints
+sphinxcontrib-mermaid
+jinja2
+pandas
+matplotlib
+seaborn
+biopython
+httpx
+pyyaml
+ete3

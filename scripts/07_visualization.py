@@ -1,8 +1,30 @@
+"""
+Phylogenetic Tree Visualization for HIV-1.
+
+This module generates publication-quality visualizations of phylogenetic trees
+using the ete3 library. It supports circular and rectangular layouts.
+
+Biological Context:
+    Visualizing the tree is crucial for interpreting evolutionary relationships.
+    Circular layouts are often used for large datasets to display global
+    diversity, while rectangular layouts are better for detailed inspection
+    of specific clades or transmission clusters.
+
+Pipeline Stage:
+    Phase 7 of 7: Visualization.
+
+Example:
+    >>> # Run from terminal:
+    >>> # python scripts/07_visualization.py
+"""
+
+from __future__ import annotations
 import os
 import yaml
 import logging
 import matplotlib.pyplot as plt
 from ete3 import Tree, TreeStyle, NodeStyle
+from typing import Any, Dict
 
 logging.basicConfig(
     level=logging.INFO,
@@ -13,13 +35,27 @@ logging.basicConfig(
     ]
 )
 
-def load_config():
+def load_config() -> Dict[str, Any]:
+    """
+    Load pipeline configuration from a YAML file.
+
+    Returns:
+        Dict[str, Any]: Configuration dictionary.
+    """
     with open("config.yaml", "r") as f:
         return yaml.safe_load(f)
 
-def plot_tree(tree_file, output_image):
+def plot_tree(tree_file: str, output_image: str) -> None:
     """
-    Visualizes the phylogenetic tree using ete3.
+    Visualize a phylogenetic tree using ete3.
+
+    Args:
+        tree_file (str): Path to the Newick tree file.
+        output_image (str): Path where the PNG image will be saved.
+
+    Notes:
+        Default styling uses a circular mode (`mode="c"`) and highlights
+        certain geographical tags as an example.
     """
     if not os.path.exists(tree_file):
         logging.error(f"Tree file {tree_file} not found.")
@@ -37,7 +73,7 @@ def plot_tree(tree_file, output_image):
         ts.arc_start = -180
         ts.arc_span = 360
         
-        # Color nodes by some criteria if available (placeholder)
+        # Color nodes by some criteria if available (example: USA vs others)
         for leaf in t.iter_leaves():
             ns = NodeStyle()
             ns["fgcolor"] = "red" if "USA" in leaf.name else "blue"
@@ -50,17 +86,18 @@ def plot_tree(tree_file, output_image):
     except Exception as e:
         logging.error(f"Error rendering tree: {str(e)}")
 
-def main():
+def main() -> None:
+    """
+    Entry point for the visualization script.
+    """
     config = load_config()
     tree_file = os.path.join(config["paths"]["results"], "hiv_phylogeny.treefile")
     output_image = os.path.join(config["paths"]["figures"], "hiv_tree_circular.png")
     
-    # We also try to generate a rectangular one
-    output_image_rect = os.path.join(config["paths"]["figures"], "hiv_tree_rectangular.png")
+    # We also try to generate a rectangular one (placeholder for extra logic)
+    # output_image_rect = os.path.join(config["paths"]["figures"], "hiv_tree_rectangular.png")
     
     plot_tree(tree_file, output_image)
-    
-    # Additional logic for other visualizations (e.g. mutation heatmaps) could go here
 
 if __name__ == "__main__":
     main()

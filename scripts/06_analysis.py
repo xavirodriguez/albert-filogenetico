@@ -1,3 +1,26 @@
+"""
+HIV-1 Virology Analysis: Subtyping and Drug Resistance Detection.
+
+This module integrates with the COMET API for subtyping and the Stanford
+HIVdb GraphQL API for identifying drug resistance mutations. It also
+provides local fallback subtyping and generates a comprehensive HTML report.
+
+Biological Context:
+    Subtyping is essential for understanding the molecular epidemiology of
+    HIV-1. Resistance mutations in the pol gene (Protease, Reverse
+    Transcriptase, Integrase) determine the efficacy of antiretroviral
+    therapy (ART). Monitoring these mutations is crucial for clinical
+    management and public health.
+
+Pipeline Stage:
+    Phase 6 of 7: Virological Analysis.
+
+Example:
+    >>> # Run from terminal:
+    >>> # python scripts/06_analysis.py
+"""
+
+from __future__ import annotations
 import os
 import yaml
 import logging
@@ -16,6 +39,7 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio import Align
 from jinja2 import Template
+from typing import Any, Dict, List, Optional, Union
 
 # Standard logging configuration
 logging.basicConfig(
@@ -27,23 +51,57 @@ logging.basicConfig(
     ]
 )
 
-class NetworkError(Exception): pass
-class TranslationError(Exception): pass
-class APIRateLimitError(Exception): pass
+class NetworkError(Exception):
+    """Custom exception for network-related failures."""
+    pass
 
-def load_config():
+class TranslationError(Exception):
+    """Custom exception for protein translation failures."""
+    pass
+
+class APIRateLimitError(Exception):
+    """Custom exception for API rate limit exceeding."""
+    pass
+
+def load_config() -> Dict[str, Any]:
+    """
+    Load pipeline configuration from a YAML file.
+
+    Returns:
+        Dict[str, Any]: Configuration dictionary.
+    """
     with open("config.yaml", "r") as f:
         return yaml.safe_load(f)
 
-def get_cache_path(sequence, prefix):
+def get_cache_path(sequence: Union[str, Seq], prefix: str) -> str:
+    """
+    Generate a deterministic cache file path based on sequence content.
+
+    Args:
+        sequence: The DNA sequence to hash.
+        prefix (str): Prefix for the cache file (e.g., 'comet', 'hivdb').
+
+    Returns:
+        str: Path to the JSON cache file.
+    """
     hasher = hashlib.md5()
     hasher.update(str(sequence).encode())
     return os.path.join("data/cache", f"{prefix}_{hasher.hexdigest()}.json")
 
-async def call_comet_api(sequences, api_url):
+async def call_comet_api(sequences: List[SeqRecord], api_url: str) -> List[Optional[Dict[str, Any]]]:
     """
-    Calls COMET HIV-1 Subtyping API.
-    Ref: Struck et al. (2014) COMET: adaptive context-based modeling for ultra-fast HIV-1 subtyping.
+    Calls COMET HIV-1 Subtyping API with caching and retry logic.
+
+    Args:
+        sequences (List[SeqRecord]): List of sequences to subtype.
+        api_url (str): URL of the COMET API.
+
+    Returns:
+        List[Optional[Dict[str, Any]]]: List of subtyping results or None on failure.
+
+    Notes:
+        Ref: Struck et al. (2014) COMET: adaptive context-based modeling
+        for ultra-fast HIV-1 subtyping.
     """
     results = []
     async with httpx.AsyncClient(timeout=30.0) as client:
@@ -54,7 +112,8 @@ async def call_comet_api(sequences, api_url):
                     with open(cache_path, "r") as f:
                         results.append(json.load(f))
                     continue
-                except: pass
+                except Exception:
+                    pass
 
             payload = {"fasta": f">{record.id}\n{str(record.seq)}"}
             success = False
@@ -83,12 +142,19 @@ async def call_comet_api(sequences, api_url):
 
             if not success:
                 results.append(None)
-            await asyncio.sleep(0.1) # 10 req/s
+            await asyncio.sleep(0.1) # 10 req/s rate limiting
     return results
 
-def fallback_subtyping(sequences, ref_file):
+def fallback_subtyping(sequences: List[SeqRecord], ref_file: str) -> List[Dict[str, Any]]:
     """
     Fallback subtyping using local alignment against reference sequences.
+
+    Args:
+        sequences (List[SeqRecord]): Sequences to subtype.
+        ref_file (str): Path to the reference FASTA file.
+
+    Returns:
+        List[Dict[str, Any]]: Subtyping results based on local alignment scores.
     """
     if not os.path.exists(ref_file):
         logging.error("Reference file for fallback not found.")
@@ -100,10 +166,10 @@ def fallback_subtyping(sequences, ref_file):
     
     results = []
     for seq in sequences:
-        best_score = -1
+        best_score = -1.0
         best_subtype = "Unknown"
         for ref in refs:
-            score = aligner.score(seq.seq, ref.seq)
+            score = float(aligner.score(seq.seq, ref.seq))
             if score > best_score:
                 best_score = score
                 best_subtype = ref.id.split('.')[0]
@@ -117,7 +183,17 @@ def fallback_subtyping(sequences, ref_file):
         })
     return results
 
-def identify_subtypes(fasta_file, results_path):
+def identify_subtypes(fasta_file: str, results_path: str) -> pd.DataFrame:
+    """
+    Identify HIV-1 subtypes using API calls and local fallback.
+
+    Args:
+        fasta_file (str): Path to the filtered FASTA file.
+        results_path (str): Directory to save subtyping results and plots.
+
+    Returns:
+        pd.DataFrame: DataFrame containing IDs and identified subtypes.
+    """
     start_time = time.time()
     logging.info("Starting HIV-1 subtype identification...")
     config = load_config()
@@ -160,7 +236,19 @@ def identify_subtypes(fasta_file, results_path):
     logging.info(f"Subtyping completed in {time.time() - start_time:.2f}s")
     return df
 
-def translate_pol(sequence):
+def translate_pol(sequence: str) -> str:
+    """
+    Translate DNA pol sequence to protein in the best reading frame.
+
+    Args:
+        sequence (str): DNA sequence string.
+
+    Returns:
+        str: Translated amino acid sequence.
+
+    Raises:
+        TranslationError: If no valid protein could be translated.
+    """
     best_protein = ""
     max_length = 0
     for frame in range(3):
@@ -173,13 +261,22 @@ def translate_pol(sequence):
             if current_len > max_length:
                 max_length = current_len
                 best_protein = protein
-        except Exception: continue
-    if not best_protein: raise TranslationError("Could not translate sequence")
+        except Exception:
+            continue
+    if not best_protein:
+        raise TranslationError("Could not translate sequence")
     return best_protein
 
-async def call_hivdb_api(sequence_record, api_url):
+async def call_hivdb_api(sequence_record: SeqRecord, api_url: str) -> Dict[str, Any]:
     """
-    Calls Stanford HIVdb GraphQL API (Sierra).
+    Calls Stanford HIVdb GraphQL API (Sierra) for drug resistance.
+
+    Args:
+        sequence_record (SeqRecord): Sequence to analyze.
+        api_url (str): Sierra API URL.
+
+    Returns:
+        Dict[str, Any]: JSON response from the API.
     """
     query = """
     query Resistance($sequences: [UnalignedSequenceInput]!) {
@@ -209,7 +306,16 @@ async def call_hivdb_api(sequence_record, api_url):
         response.raise_for_status()
         return response.json()
 
-def check_resistance_mutations(fasta_file):
+def check_resistance_mutations(fasta_file: str) -> pd.DataFrame:
+    """
+    Detect drug resistance mutations using Stanford HIVdb API.
+
+    Args:
+        fasta_file (str): Path to the input FASTA file.
+
+    Returns:
+        pd.DataFrame: Report containing drugs, scores, and resistance levels.
+    """
     start_time = time.time()
     logging.info("Starting drug resistance mutation detection...")
     config = load_config()
@@ -226,7 +332,8 @@ def check_resistance_mutations(fasta_file):
             try:
                 with open(cache_path, "r") as f:
                     data = json.load(f)
-            except: pass
+            except Exception:
+                pass
 
         if data is None:
             try:
@@ -275,11 +382,23 @@ def check_resistance_mutations(fasta_file):
     logging.info(f"Resistance analysis completed in {time.time() - start_time:.2f}s")
     return df
 
-def generate_report(subtypes_df, resistance_df, results_path):
+def generate_report(
+    subtypes_df: pd.DataFrame,
+    resistance_df: pd.DataFrame,
+    results_path: str
+) -> None:
+    """
+    Generate a consolidated HTML report with figures and tables.
+
+    Args:
+        subtypes_df (pd.DataFrame): DataFrame of subtyping results.
+        resistance_df (pd.DataFrame): DataFrame of drug resistance results.
+        results_path (str): Directory where the HTML report will be saved.
+    """
     start_time = time.time()
     logging.info("Generating HTML summary report...")
 
-    def img_to_base64(path):
+    def img_to_base64(path: str) -> str:
         if os.path.exists(path):
             with open(path, "rb") as f:
                 return base64.b64encode(f.read()).decode()
@@ -330,11 +449,15 @@ def generate_report(subtypes_df, resistance_df, results_path):
         f.write(html_out)
     logging.info(f"Report generated in {time.time() - start_time:.2f}s")
 
-def main():
+def main() -> None:
+    """
+    Entry point for the virology analysis script.
+    """
     config = load_config()
     input_file = os.path.join(config["paths"]["processed_data"], "hiv_filtered.fasta")
     results_path = config["paths"]["results"]
-    if not os.path.exists(results_path): os.makedirs(results_path)
+    if not os.path.exists(results_path):
+        os.makedirs(results_path)
     subtypes_df = identify_subtypes(input_file, results_path)
     resistance_df = check_resistance_mutations(input_file)
     generate_report(subtypes_df, resistance_df, results_path)
