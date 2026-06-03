@@ -1,0 +1,71 @@
+05_phylogeny
+============
+
+.. py:module:: 05_phylogeny
+
+.. autoapi-nested-parse::
+
+   Phylogenetic Reconstruction for HIV-1 using IQ-TREE 2.
+
+   This module performs Maximum Likelihood (ML) phylogenetic tree reconstruction
+   from aligned HIV-1 sequences. It includes automated model selection and
+   UltraFast Bootstrap (UFBoot) for node support evaluation.
+
+   Biological Context:
+       Phylogeny is the cornerstone of evolutionary analysis. For HIV-1, it
+       allows the identification of transmission clusters, the study of
+       viral spread (phylodynamics), and the classification of subtypes.
+       Maximum Likelihood methods are the gold standard for robust and
+       computationally efficient tree inference.
+
+   Pipeline Stage:
+       Phase 5 of 7: Phylogenetic Inference.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/05_phylogeny.py
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   05_phylogeny.load_config
+   05_phylogeny.run_iqtree
+   05_phylogeny.main
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: run_iqtree(input_file: str, config: Dict[str, Any], output_prefix: str) -> None
+
+   Run IQ-TREE 2 for model selection and tree reconstruction.
+
+   :param input_file: Path to the aligned FASTA file.
+   :type input_file: :py:class:`str`
+   :param config: Configuration dictionary with phylogeny parameters.
+   :type config: :py:class:`Dict[str`, :py:class:`Any]`
+   :param output_prefix: Prefix for the generated output files.
+   :type output_prefix: :py:class:`str`
+
+   .. admonition:: Notes
+
+      Uses `-m MFP` to select the best model and proceed with tree building.
+      Employs UltraFast Bootstrap (`-B`) for evaluating branch support.
+
+
+.. py:function:: main() -> None
+
+   Entry point for the phylogeny script.

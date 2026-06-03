@@ -1,0 +1,86 @@
+02_qc
+=====
+
+.. py:module:: 02_qc
+
+.. autoapi-nested-parse::
+
+   Quality Control and Filtering for HIV-1 Sequences.
+
+   This module performs biological quality control on raw FASTA sequences,
+   filtering out entries that do not meet length requirements or contain
+   excessive ambiguous bases (Ns).
+
+   Biological Context:
+       In HIV-1 evolutionary studies, sequences with high ambiguity or short
+       lengths can introduce noise in phylogenetic reconstruction. Standard
+       practice involves filtering sequences that cover less than 80% of the
+       target region or have >5% ambiguous sites.
+
+   Pipeline Stage:
+       Phase 2 of 7: Quality Control.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/02_qc.py
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   02_qc.load_config
+   02_qc.run_qc
+   02_qc.generate_plots
+   02_qc.main
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: run_qc(input_file: str, min_len: int, max_ns: float, processed_path: str) -> pandas.DataFrame
+
+   Execute biological quality control filtering on a FASTA file.
+
+   :param input_file: Path to the input raw FASTA file.
+   :type input_file: :py:class:`str`
+   :param min_len: Minimum sequence length required (in bp).
+   :type min_len: :py:class:`int`
+   :param max_ns: Maximum allowed percentage of ambiguous bases (Ns).
+   :type max_ns: :py:class:`float`
+   :param processed_path: Directory where filtered output and stats will be saved.
+   :type processed_path: :py:class:`str`
+
+   :returns: Summary statistics of all analyzed sequences.
+   :rtype: pd.DataFrame
+
+   .. admonition:: Notes
+
+      The function saves `hiv_filtered.fasta` and `qc_stats.csv` to the
+      `processed_path` directory.
+
+
+.. py:function:: generate_plots(df: pandas.DataFrame, output_path: str) -> None
+
+   Generate distribution plots for sequence metrics.
+
+   :param df: DataFrame containing 'length' and 'gc_content' columns.
+   :type df: :py:class:`pd.DataFrame`
+   :param output_path: Directory where the PNG plot will be saved.
+   :type output_path: :py:class:`str`
+
+
+.. py:function:: main() -> None
+
+   Entry point for the QC script.

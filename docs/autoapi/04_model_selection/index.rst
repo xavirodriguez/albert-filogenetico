@@ -1,0 +1,67 @@
+04_model_selection
+==================
+
+.. py:module:: 04_model_selection
+
+.. autoapi-nested-parse::
+
+   Evolutionary Model Selection for HIV-1 Phylogeny.
+
+   This module uses IQ-TREE's ModelFinder to identify the best-fit substitution
+   model for the aligned HIV-1 sequences before full tree reconstruction.
+
+   Biological Context:
+       Selecting an appropriate evolutionary model (e.g., GTR+I+G) is vital for
+       accurate phylogenetic inference. Models account for different rates of
+       nucleotide substitution and rate heterogeneity across sites, which are
+       pronounced in HIV-1.
+
+   Pipeline Stage:
+       Phase 4 of 7: Model Selection.
+
+   .. admonition:: Example
+
+      >>> # Run from terminal:
+      >>> # python scripts/04_model_selection.py
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   04_model_selection.load_config
+   04_model_selection.run_model_selection
+   04_model_selection.main
+
+
+Module Contents
+---------------
+
+.. py:function:: load_config() -> Dict[str, Any]
+
+   Load pipeline configuration from a YAML file.
+
+   :returns: Configuration dictionary.
+   :rtype: Dict[str, Any]
+
+
+.. py:function:: run_model_selection(input_file: str, config: Dict[str, Any]) -> None
+
+   Execute ModelFinder via IQ-TREE on an aligned FASTA file.
+
+   :param input_file: Path to the aligned FASTA file.
+   :type input_file: :py:class:`str`
+   :param config: Configuration dictionary containing IQ-TREE path.
+   :type config: :py:class:`Dict[str`, :py:class:`Any]`
+
+   .. admonition:: Notes
+
+      This script performs only the model selection phase (`-m MF`).
+      Phase 5 (Phylogeny) typically uses `MFP` to combine selection and building.
+
+
+.. py:function:: main() -> None
+
+   Entry point for the model selection script.

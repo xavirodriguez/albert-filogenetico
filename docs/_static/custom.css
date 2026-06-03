@@ -1,0 +1,11 @@
+/* === FILE: docs/_static/custom.css === */
+:root {
+    --color-brand-primary: #2c3e50;
+    --color-brand-content: #34495e;
+}
+
+.api-node {
+    border-left: 3px solid var(--color-brand-primary);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+}

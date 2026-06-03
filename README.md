@@ -17,6 +17,7 @@ virus_evolution_pipeline/
 │   ├── 05_phylogeny.py # Reconstrucción filogenética (IQ-TREE)
 │   ├── 06_analysis.py  # Subtipado y resistencia (HIV-1 específico)
 │   └── 07_visualization.py # Generación de figuras
+├── docs/               # Documentación técnica (Sphinx)
 ├── data/               # Datos crudos y procesados
 ├── results/            # Resultados de análisis y árboles
 └── figures/            # Figuras para publicación
@@ -50,8 +51,27 @@ O ejecutar el flujo completo (una vez configurado):
 python main.py
 ```
 
+## Documentación
+La documentación completa del proyecto, incluyendo la API de los scripts y la justificación científica, está disponible en formato HTML.
+
+### Generar Documentación
+Para construir la documentación localmente:
+```bash
+# Instalar dependencias de documentación
+pip install -r docs/requirements.txt
+
+# Generar HTML
+make -C docs html
+```
+
+### Visualizar Localmente
+Una vez generada, puede visualizarla abriendo `docs/_build/html/index.html` o sirviéndola con Python:
+```bash
+python -m http.server -d docs/_build/html
+```
+
 ## Justificación Científica
-Consulte el archivo `FASE_0_JUSTIFICACION.md` para un desglose detallado de la estrategia biológica y las decisiones metodológicas tomadas.
+Consulte la sección de **Overview** en la documentación generada o el archivo `FASE_0_JUSTIFICACION.md`.
 
 ## Referencias
 1.  Katoh K, Standley DM. MAFFT multiple sequence alignment software version 7: improvements in performance and usability. *Mol Biol Evol*. 2013.
