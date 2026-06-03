@@ -5,6 +5,7 @@ Este script es una versión refactorizada del pipeline original, diseñada con u
 enfoque educativo para científicos que están aprendiendo ingeniería de software.
 
 HERRAMIENTAS UTILIZADAS:
+
 1. pathlib: Sustituye el manejo de rutas basado en strings por objetos Path.
    Esto hace que el código funcione igual en Windows, Linux y Mac sin cambios.
 2. logging: Reemplaza los 'print()' por un sistema profesional de registro.
@@ -178,7 +179,7 @@ def generate_plots(df: pd.DataFrame, output_dir: Path) -> None:
     
     plt.subplot(1, 2, 2)
     sns.histplot(df['gc_content'], kde=True, color='green')
-    plt.title('Distribución de Contenido GC')
+    plt.title('GC Content Distribution')
     
     plt.tight_layout()
 
