@@ -1,3 +1,15 @@
 2026-06-03 12:23:05,087 - INFO - Starting Quality Control on data/raw/hiv_raw.fasta...
 2026-06-03 12:23:05,099 - INFO - QC Complete. 38 sequences passed filters.
 2026-06-03 12:23:05,576 - INFO - QC plots saved to figures
+2026-06-03 19:38:49,090 - INFO - === Iniciando Pipeline de Control de Calidad ===
+2026-06-03 19:38:49,091 - INFO - Iniciando Control de Calidad en: data/raw/hiv_raw.fasta
+2026-06-03 19:38:49,101 - INFO - Progreso: 100 secuencias analizadas...
+2026-06-03 19:38:49,107 - INFO - QC Finalizado. 38 secuencias pasaron los filtros.
+2026-06-03 19:38:49,688 - INFO - Gráficos guardados en: figures/qc_metrics.png
+2026-06-03 19:38:49,688 - INFO - === Proceso completado exitosamente ===
+2026-06-03 19:39:43,758 - INFO - === Iniciando Pipeline de Control de Calidad ===
+2026-06-03 19:39:43,758 - INFO - Iniciando Control de Calidad en: data/raw/hiv_raw.fasta
+2026-06-03 19:39:43,764 - INFO - Progreso: 100 secuencias analizadas...
+2026-06-03 19:39:43,769 - INFO - QC Finalizado. 38 secuencias pasaron los filtros.
+2026-06-03 19:39:44,216 - INFO - Gráficos guardados en: figures/qc_metrics.png
+2026-06-03 19:39:44,216 - INFO - === Proceso completado exitosamente ===
