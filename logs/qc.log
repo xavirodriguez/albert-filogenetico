@@ -1,0 +1,3 @@
+2026-06-03 12:23:05,087 - INFO - Starting Quality Control on data/raw/hiv_raw.fasta...
+2026-06-03 12:23:05,099 - INFO - QC Complete. 38 sequences passed filters.
+2026-06-03 12:23:05,576 - INFO - QC plots saved to figures

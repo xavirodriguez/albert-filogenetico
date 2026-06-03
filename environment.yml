@@ -1,0 +1,18 @@
+name: virus_evolution_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - biopython
+  - mafft
+  - iqtree
+  - pandas
+  - matplotlib
+  - seaborn
+  - pyyaml
+  - ete3
+  - requests
+  - pip:
+    - -r requirements.txt

@@ -1,0 +1,28 @@
+# Pipeline Configuration for HIV-1 Evolutionary Analysis
+
+virus: "HIV-1"
+reference_accession: "AF033819" # HXB2
+min_length: 1000
+max_ns_percent: 5.0
+
+# Paths
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  results: "results"
+  figures: "figures"
+  logs: "logs"
+
+# Tools parameters
+alignment:
+  method: "mafft"
+  executable: "bin/mafft-linux64/mafftdir/bin/mafft"
+  binaries: "bin/mafft-linux64/mafftdir/libexec"
+  args: "--auto"
+
+phylogeny:
+  tool: "iqtree"
+  executable: "bin/iqtree-2.3.6-Linux-intel/bin/iqtree2"
+  model: "MFP" # ModelFinder Plus
+  bootstrap: 1000
+  ufboot: true
